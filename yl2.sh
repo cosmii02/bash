@@ -29,4 +29,3 @@ cp -r "$source_folder"/* "$destination_folder"
 
 # Väljastame teate
 echo "Kausta $source_folder kopeerimine kausta $destination_folder on lõppenud."
-
