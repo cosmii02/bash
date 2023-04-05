@@ -1,19 +1,19 @@
 #!/bin/bash
 
-# Define colors for output
+# Defineeri värvid väljundi jaoks
 GREEN="\033[32m"
 RED="\033[31m"
 RESET="\033[0m"
 
-# Generate a random number between 1 and 20
+# Genereeri suvaline number vahemikus 1 kuni 20
 TARGET_NUMBER=$(( $RANDOM % 20 + 1 ))
 
-# Function to output a number line
+# Funktsioon numbrite joone väljastamiseks
 function print_number_line {
   printf "${GREEN}%-2d ${RESET}" $1
 }
 
-# Function to print a horizontal line
+# Funktsioon horisontaalse joone väljastamiseks
 function print_line {
   printf "+"
   for i in {1..39}; do
@@ -22,7 +22,7 @@ function print_line {
   printf "+\n"
 }
 
-# Print game header
+# Väljasta mängu päis
 print_line
 printf "|${GREEN} ARVA NUMBRIT 1-20 ${RESET}|\n"
 print_line
@@ -36,27 +36,27 @@ done
 printf "|\n"
 print_line
 
-# Prompt user to guess the number
+# Palu kasutajal ära arvata number
 read -p "Sisesta number: " GUESS
 
-# Initialize guess count to 1
+# Initsialiseeri katsete arv 1-ga
 GUESS_COUNT=1
 
-# Loop until the guess is correct
+# Tsükkel, kuni number on õigesti ära arvatud
 while [ "$GUESS" -ne "$TARGET_NUMBER" ]; do
-  # Tell user if guess is too high or too low
+  # Ütle kasutajale, kas pakkumine on liiga suur või väike
   if [ "$GUESS" -gt "$TARGET_NUMBER" ]; then
     printf "${RED}Number on liiga suur!${RESET}\n"
   else
     printf "${RED}Number on liiga väike!${RESET}\n"
   fi
   
-  # Prompt user for another guess
+  # Palu kasutajal uut pakkumist teha
   read -p "Proovi uuesti: " GUESS
   
-  # Increment guess count
+  # Suurenda katsete arvu
   GUESS_COUNT=$(( GUESS_COUNT + 1 ))
 done
 
-# Output success message
+# Väljasta edukas sõnum
 printf "${GREEN}Õige number! Arvasid ära numbri $TARGET_NUMBER $GUESS_COUNT katsega.${RESET}\n"
